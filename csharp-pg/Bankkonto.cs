@@ -1,15 +1,25 @@
-using System.Diagnostics.Contracts;
-using System.Runtime.CompilerServices;
-
 namespace csharp_pg
 {
         public class Bankkonto
     {
-        private double Kontostand = 0;
-        public int Pin = 0;
-        private int Iban = 0;
-        int Kontonummer = 0;
-        string Kontoinhaber;
+        public static string generateIban()
+        {
+            //generate with .next iban
+            return "abc";
+        }
+        public double Kontostand { get; private set; } = 0 ;
+        private int Pin = 0;
+        public string Iban { get ; private set; }
+        public string? Kontonummer { get ; private set; }
+        public string? Kontoinhaber { get ; private set;}
+
+        public Bankkonto(int pin, string iban, string kontonummer, string kontoinhaber)
+        {
+            Pin = pin;
+            Iban = iban;
+            Kontonummer = kontonummer;
+            Kontoinhaber = kontoinhaber;
+        }
 
         private void setPin(int PinZahl)
         {
@@ -43,10 +53,6 @@ namespace csharp_pg
                 }
         }
 
-        private double kontostandAnzeigenAfterAcces()
-        {
-            return Kontostand;
-        }
 
         private void geldEinzahlen(double EingezahltesGeld)
         {
@@ -58,5 +64,18 @@ namespace csharp_pg
             return Kontostand;
         }
 
+        public bool geldAuszahlen(int betrag)
+        {
+            if(Kontostand >= betrag)
+            {
+                Kontostand = Kontostand - betrag;
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Transaktion Fehlgeschlagen");
+                return false; 
+            }
+        }
     }
 }
