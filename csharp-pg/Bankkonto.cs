@@ -1,16 +1,27 @@
 namespace csharp_pg
 {
-        public class Bankkonto
+    public class Bankkonto
     {
+        private static Random r = new Random();
         public static string generateIban()
         {
-            //generate with .next iban
-            return "abc";
+            return r.Next(100000000, 999999999).ToString();
         }
+
+        public static string generateKontonummer()
+        {
+            return r.Next(10000, 99999).ToString();
+        }
+
+        public static int generatePin()
+        {
+            return r.Next(1000, 9999);
+        }
+        
         public double Kontostand { get; private set; } = 0 ;
         private int Pin = 0;
-        public string Iban { get ; private set; }
-        public string? Kontonummer { get ; private set; }
+        public string Iban { get ; private set; } 
+        public string? Kontonummer { get ; private set; } 
         public string? Kontoinhaber { get ; private set;}
 
         public Bankkonto(int pin, string iban, string kontonummer, string kontoinhaber)
@@ -53,8 +64,7 @@ namespace csharp_pg
                 }
         }
 
-
-        private void geldEinzahlen(double EingezahltesGeld)
+        public void geldEinzahlen(double EingezahltesGeld)
         {
             Kontostand = Kontostand + EingezahltesGeld;
         }
@@ -77,5 +87,10 @@ namespace csharp_pg
                 return false; 
             }
         }
+
+        // public bool geldAufEinAnderesKontoEinzahlen(int EmpfaengerIban, double EmpfaengerBetrag)
+        // {
+            
+        // }
     }
 }
