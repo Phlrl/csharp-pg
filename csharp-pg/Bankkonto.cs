@@ -88,9 +88,19 @@ namespace csharp_pg
             }
         }
 
-        // public bool geldAufEinAnderesKontoEinzahlen(int EmpfaengerIban, double EmpfaengerBetrag)
-        // {
-            
-        // }
+        public bool geldAufEinAnderesKontoEinzahlen(List<Bankkonto> bankkontos ,string EmpfaengerIban, double EmpfaengerBetrag)
+        {
+
+            foreach (Bankkonto bk in bankkontos)
+            {
+                if (Iban == EmpfaengerIban)
+                {
+                    bk.geldEinzahlen(EmpfaengerBetrag);
+                    Console.WriteLine("Der Betrag in Höhe von " +EmpfaengerBetrag + " Wurde auf das Konto mit der Iban " +EmpfaengerIban +" eingezalt");
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
