@@ -1,20 +1,16 @@
-using System.Reflection.Metadata;
-
 namespace csharp_pg
 {
     public class Addresse
     {
-        List<Addresse> KundenAddressen = new List<Addresse>();
-        public Addresse? addresse;
-        public Addresse addresseSetzen(string ParameterAddresseSetzen)
-        {
-            ParameterAddresseSetzen 
-            return addresse;
-        }
-        public string kundeZuKundenAddressenAdden()
-        {
-            // KundenAddressen.Add();
+        public string? Strasse { get; set; }
+        public string? Ort { get; set; }
+        public bool HauptAddresse { get; private set; } = false;
 
-        }   
+        public Addresse(string strasse, string ort, bool hauptAddresse)
+        {
+            Strasse = strasse;
+            Ort = ort;
+            HauptAddresse = hauptAddresse;
+        }
     }
 }

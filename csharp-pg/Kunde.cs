@@ -1,21 +1,40 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace csharp_pg
 {
     public class Kunde
     {
         public string? Vorname { get; private set; }
         public string? Nachname { get; private set; }
-        //vor und nachname, addresse(class) ein kunde hat mehre addressen(liste),  
+        public List<Addresse> AddresseVonKunden { get; private set; } = new List<Addresse>();
 
-        public string vornameSetzen(string GesezterVorname)
+        public Kunde(string vorname, string nachname)
         {
-            Vorname = GesezterVorname;
-            return Vorname;
-        }  
+            Vorname = vorname;
+            Nachname = nachname;
+        }
+        
+        public bool addresseHinzufuegen(Addresse addresse)
+        {
+            bool hasHauptAddresse = checkForHauptAddresse();
+            if (hasHauptAddresse == true && addresse.HauptAddresse)
+            {
+                return false;
+            }
+            AddresseVonKunden.Add(addresse);
+            return true;
+        }
 
-        public string nachnameSetzen(string GesezterNachname)
+        public bool checkForHauptAddresse()
         {
-            Nachname = GesezterNachname;
-            return Nachname;
-        } 
+            foreach (Addresse addresse in AddresseVonKunden)
+            {
+                if (addresse.HauptAddresse == true)
+                {
+                    return true; 
+                }
+            }
+            return false;
+        }
     }
 }
