@@ -22,9 +22,9 @@ namespace csharp_pg
         private int Pin = 0;
         public string Iban { get ; private set; } 
         public string? Kontonummer { get ; private set; } 
-        public string? Kontoinhaber { get ; private set;}
+        public Kunde? Kontoinhaber { get ; private set;}
 
-        public Bankkonto(int pin, string iban, string kontonummer, string kontoinhaber)
+        public Bankkonto(int pin, string iban, string kontonummer, Kunde kontoinhaber)
         {
             Pin = pin;
             Iban = iban;
