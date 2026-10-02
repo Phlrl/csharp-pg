@@ -9,5 +9,18 @@ namespace csharp_pg
         {
             BankKonten.Add(bk);
         }
+
+        public bool checkForKontenInBankKonten()
+        {
+            string checkforibaninBankkonten= Console.ReadLine();
+            foreach (Bankkonto bk in BankKonten)
+            {
+                if (checkforibaninBankkonten == bk.Iban)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
